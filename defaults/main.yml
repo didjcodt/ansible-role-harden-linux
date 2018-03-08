@@ -5,8 +5,6 @@ harden_linux_deploy_user_shell: "/bin/bash"
 
 # Packages required by this role
 harden_linux_required_packages:
-  - ufw
-  - sshguard
   - unattended-upgrades
   - sudo
 
@@ -81,6 +79,10 @@ harden_linux_sshd_settings:
   "^PermitTunnel": "PermitTunnel no"                      # Disable tun(4) device forwarding
   "^Port ": "Port 22"                                     # Set SSHd port
 
+# Disable/Enable UFW
+# Do not use with nftables
+harden_linux_ufw_use: True
+
 # By default we only allow SSH inbound traffic.
 harden_linux_ufw_rules:
   - rule: "allow"
@@ -99,8 +101,11 @@ harden_linux_ufw_defaults:
   "^IPT_SYSCTL": 'IPT_SYSCTL=/etc/ufw/sysctl.conf'
   "^IPT_MODULES": 'IPT_MODULES="nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns"'
 
-# Disable/enable UFW logging
-harden_linux_ufw_logging: 'off'
+# Disable/Enable UFW logging
+harden_linux_ufw_logging: False
+
+# Use SSHGuard
+harden_linux_sshguard_use: True
 
 # SSHGuard whitelist. SSHGuard blocks IPs for some time if
 # to many login attempts fail. Specify IP (ranges) that
