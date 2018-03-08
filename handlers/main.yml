@@ -3,6 +3,7 @@
 - name: reload ufw
   ufw:
     state: reloaded
+  when: harden_linux_ufw_use
 
 - name: restart ssh
   service:

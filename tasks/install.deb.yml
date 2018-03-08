@@ -1,0 +1,59 @@
+---
+
+- name: Update APT package cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  tags:
+    - apt
+
+- name: Install aptitude
+  apt:
+    pkg: aptitude
+    state: installed
+  tags:
+    - apt
+
+- name: Upgrade APT to the latest packages
+  apt:
+    upgrade: safe
+  tags:
+    - apt
+
+- name: Ensure UFW
+  apt:
+    state: present
+    pkg: "ufw"
+  when: harden_linux_ufw_use
+  tags:
+    - apt
+    - ufw
+
+- name: Ensure SSHGuard
+  apt:
+    state: present
+    pkg: "sshguard"
+  when: harden_linux_sshguard_use
+  tags:
+    - apt
+    - sshguard
+
+- name: Install required packages
+  apt:
+    state: present
+    pkg: "{{item}}"
+  with_items:
+    - "{{harden_linux_required_packages}}"
+  tags:
+    - apt
+
+- name: Adjust APT update intervals
+  copy:
+    src: etc/apt/apt.conf.d/10periodic
+    dest: /etc/apt/apt.conf.d/10periodic
+    owner: root
+    group: root
+    mode: 0644
+  when: harden_linux_auto_update
+  tags:
+    - apt
