@@ -1,18 +1,18 @@
 ansible-role-harden-linux
 =========================
 
-This Ansible role was mainly created for [Kubernetes the not so hard way with Ansible (at Scaleway) - Part 2 - Harden the instances](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-2/). But it can be used also standalone of course to harden Linux (targeting Ubuntu 16.04 mainly at the moment). It has the following features:
+This Ansible role was mainly created for [Kubernetes the not so hard way with Ansible (at Scaleway) - Part 2 - Harden the instances](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-2/). But it can be used also standalone of course to harden Linux (targeting Ubuntu 16.04 and RedHat systems). It has the following features:
 
 - Change root password
 - Add a regular/deploy user used for administration (e.g. for Ansible or login via SSH)
-- Adjust APT update intervals
-- Setup ufw firewall and allow only SSH access by default (add more rules/allowed networks if you like)
+- Adjust APT/yum update intervals
+- Setup ufw/nftables firewall and allow only SSH access by default (add more rules/allowed networks if you like)
 - Adjust security related sysctl settings (/proc filesystem)
 - Change SSH default port (if requested)
 - Disable password authentication
 - Disable root login
 - Disable PermitTunnel
-- Install Sshguard and adjust whitelist
+- Install Sshguard and adjust whitelist (if requested)
 
 Versions
 --------
