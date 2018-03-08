@@ -1,12 +1,15 @@
 galaxy_info:
   author: Robert Wimmer
-  description: Ansible role for hardening Linux (targeting Ubuntu 16.04 mainly)
+  description: Ansible role for hardening Linux (targeting Ubuntu 16.04 and EL)
   license: GPLv3
   min_ansible_version: 2.2
   platforms:
   - name: Ubuntu
     versions:
     - xenial
+  - name: EL
+    versions:
+    - all
   galaxy_tags:
     - networking
     - security
