@@ -36,6 +36,8 @@
 - include_tasks: install.deb.yml
   when: ansible_os_family == 'Debian'
 
+- include_tasks: install.yum.yml
+  when: ansible_os_family == 'RedHat'
 
 - name: Combine harden_linux_sshd_settings and harden_linux_sshd_settings_user (if defined)
   set_fact:

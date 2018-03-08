@@ -1,0 +1,43 @@
+---
+
+- name: Update system
+  yum:
+    name: '*'
+    state: latest
+  tags:
+    - yum
+
+- fail:
+    msg: SSHGuard not supported yet on EL
+  when: harden_linux_sshguard_use
+
+- name: Ensure yum-cron
+  yum:
+    name: 'yum-cron'
+    state: present
+  when: harden_linux_auto_update
+  tags:
+    - yum
+
+- name: Install required packages
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - "{{harden_linux_required_packages}}"
+  tags:
+    - yum
+
+- name: yum-cron - Configure defaults
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart yum-cron
+  with_items:
+    - { src: yum-cron.conf.j2, dst: /etc/yum/yum-cron.conf }
+    - { src: yum-cron-hourly.conf.j2, dst: /etc/yum/yum-cron-hourly.conf }
+  tags:
+    - yum
