@@ -126,6 +126,13 @@ harden_linux_ufw_defaults:
 # Disable/Enable UFW logging
 harden_linux_ufw_logging: False
 
+# Disable/Enable nftables
+# DO NOT USE with UFW
+harden_linux_nftables_use: False
+
+# Default ruleset file for nftables
+harden_linux_nftables_ruleset_conf: '/etc/nftables.conf'
+
 # Use SSHGuard
 harden_linux_sshguard_use: True
 

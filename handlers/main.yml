@@ -5,6 +5,11 @@
     state: reloaded
   when: harden_linux_ufw_use
 
+- name: reload nftables
+  service:
+    state: restarted
+  when: harden_linux_nftables_use
+
 - name: restart ssh
   service:
     name: ssh
