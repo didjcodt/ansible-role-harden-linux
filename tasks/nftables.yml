@@ -1,0 +1,17 @@
+---
+
+- name: Ensure nftables on boot
+  service:
+    name: nftables
+    enabled: yes
+
+- name: nftables - Apply ruleset
+  copy:
+    src: etc/nftables.conf
+    dest: /etc/nftables.conf
+    owner: root
+    group: root
+    mode: 0600
+  notify: reload nftables
+  tags:
+    - nftables

@@ -19,6 +19,13 @@
   tags:
     - yum
 
+- name: Ensure nftables
+  yum:
+    name: 'nftables'
+    state: present
+  tags:
+    - yum
+
 - name: Install required packages
   yum:
     name: "{{item}}"

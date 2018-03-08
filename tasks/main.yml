@@ -76,6 +76,8 @@
 - include_tasks: ufw.yml
   when: harden_linux_ufw_use
 
+- include_tasks: nftables.yml
+  when: harden_linux_nftables_use
 
 - name: Update Sshguard white list
   lineinfile:
