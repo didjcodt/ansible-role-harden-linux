@@ -7,6 +7,29 @@ harden_linux_deploy_user_shell: "/bin/bash"
 # Override this if using EL distro, the default is for Ubuntu
 harden_linux_required_packages:
   - unattended-upgrades
+  - sudo
+
+# Disable/Enable auto updates
+harden_linux_auto_update: True
+
+# Defaults for yum-cron
+harden_linux_yum_cron_conf:
+   "update_cmd": "default"
+   "update_messages": True
+   "download_updates": True
+   "apply_updates": True
+   "system_name": "None"
+   "emit_via": "None"
+   "email_from": "root@localhost"
+   "email_to": "root@localhost"
+   "email_host": "localhost"
+
+# Defaults for yum-cron-hourly
+harden_linux_yum_cron_conf_hourly:
+   "update_cmd": "default"
+   "update_messages": True
+   "download_updates": True
+   "apply_updates": True
 
 # Disable/Enable auto updates
 harden_linux_auto_update: True
