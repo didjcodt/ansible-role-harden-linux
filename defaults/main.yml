@@ -31,6 +31,28 @@ harden_linux_yum_cron_conf_hourly:
    "download_updates": True
    "apply_updates": True
 
+# Disable/Enable auto updates
+harden_linux_auto_update: True
+
+# Defaults for yum-cron
+harden_linux_yum_cron_conf:
+   "update_cmd": "default"
+   "update_messages": True
+   "download_updates": True
+   "apply_updates": True
+   "system_name": "None"
+   "emit_via": "None"
+   "email_from": "root@localhost"
+   "email_to": "root@localhost"
+   "email_host": "localhost"
+
+# Defaults for yum-cron-hourly
+harden_linux_yum_cron_conf_hourly:
+   "update_cmd": "default"
+   "update_messages": True
+   "download_updates": True
+   "apply_updates": True
+
 # Most of this settings are recommendations from Google which they use for
 # their Google Compute Cloud OS images and from UFW firewall. Add more settings
 # on your own by adding a group or host variable called "sysctl_settings_user".
